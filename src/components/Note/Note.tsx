@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { MdDragIndicator } from "react-icons/md";
 import type { Note as NoteType } from '../../types'
 import './Note.css'
 
@@ -50,13 +51,24 @@ export function Note({ note, onUpdate }: NoteProps) {
           onKeyDown={handleKeyDown}
         />
       ) : (
-        <div className="note__body" onClick={startEditing}>
-          {note.text ? (
-            <p className="note__text">{note.text}</p>
-          ) : (
-            <p className="note__placeholder">Click to add a note…</p>
-          )}
-        </div>
+        <>
+          <div className="note__body" onClick={startEditing}>
+            {note.text ? (
+              <p className="note__text">{note.text}</p>
+            ) : (
+              <p className="note__placeholder">Click to add a note…</p>
+            )}
+          </div>
+          <footer>
+            <div className="left-col">
+              <button className="note__button-drag">
+                <MdDragIndicator size={24} />
+              </button>
+              
+            </div>
+            <div className="right-col"></div>
+          </footer>
+        </>
       )}
     </div>
   )

@@ -71,3 +71,13 @@
 .note--editing {
   box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.25);
 }
+
+.note footer {
+  padding-top: 9px;
+}
+
+.note__button-drag {
+  border: 0;
+  background: none;
+  color: #b8a800;
+}
