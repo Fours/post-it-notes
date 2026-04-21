@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+  border-bottom: 1px solid #e5e4e7;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.header__title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #08060d;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+.header__add-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #aa3bff;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s;
+  flex-shrink: 0;
+}
+
+.header__add-btn:hover {
+  opacity: 0.85;
+}
+
+.header__add-btn:active {
+  opacity: 0.7;
+}
