@@ -1,6 +1,8 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Summary
+
+This is a Post-it note app. It simulates a "wall" on which post-it notes are stuck.
 
 ## Commands
 
@@ -14,12 +16,13 @@ npm run preview    # serve the production build locally
 ## Stack
 
 - React 19 + TypeScript, bundled with Vite 8
+- react-icons v5 for icons
 - No routing library, no state management library, no test runner yet
 - Entry: `src/main.tsx` → `src/App.tsx`
 
 ## Project status
 
-Early scaffolding — `App.tsx` is empty. The project is a post-it notes app (name/intent from the repo name); no features have been implemented yet.
+Early scaffolding — `App.tsx` is empty. No features have been implemented yet.
 
 ## Instructions
 
