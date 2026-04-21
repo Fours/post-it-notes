@@ -10,5 +10,13 @@ The button in the header should create a new empty square note (300px by 300px) 
 
 The user should be able to click inside a note and then add text to it (multiple lines) and save changes. That text should then appear in the note.
 
-Store all notes data in local storage. 
+Store all notes data in local storage.
+
+3.
+
+/clear
+
+4.
+
+Add the drag-and-drop capability to a note. The user should be able to drag a note from where it is to a new position on the "wall." On each note there already exists a button with the class "note__button-drag" - this existing button should serve as a drag and drop handle for the note. Don't touch the button styles. When a note is dropped (mouse up event) the position of the note should be saved to local storage.
 

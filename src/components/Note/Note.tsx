@@ -6,11 +6,13 @@ import './Note.css'
 interface NoteProps {
   note: NoteType
   onUpdate: (id: string, text: string) => void
+  onUpdatePosition: (id: string, x: number, y: number) => void
 }
 
-export function Note({ note, onUpdate }: NoteProps) {
+export function Note({ note, onUpdate, onUpdatePosition }: NoteProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [draft, setDraft] = useState(note.text)
+  const [drag, setDrag] = useState<{ x: number; y: number } | null>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -36,10 +38,37 @@ export function Note({ note, onUpdate }: NoteProps) {
     }
   }
 
+  function handleDragMouseDown(e: React.MouseEvent) {
+    e.preventDefault()
+    const startMX = e.clientX
+    const startMY = e.clientY
+    const startNX = note.x
+    const startNY = note.y
+
+    function onMove(ev: MouseEvent) {
+      setDrag({
+        x: startNX + (ev.clientX - startMX),
+        y: startNY + (ev.clientY - startMY),
+      })
+    }
+
+    function onUp(ev: MouseEvent) {
+      const finalX = startNX + (ev.clientX - startMX)
+      const finalY = startNY + (ev.clientY - startMY)
+      onUpdatePosition(note.id, finalX, finalY)
+      setDrag(null)
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseup', onUp)
+    }
+
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseup', onUp)
+  }
+
   return (
     <div
       className={`note${isEditing ? ' note--editing' : ''}`}
-      style={{ left: note.x, top: note.y }}
+      style={{ left: drag?.x ?? note.x, top: drag?.y ?? note.y }}
     >
       {isEditing ? (
         <textarea
@@ -61,7 +90,7 @@ export function Note({ note, onUpdate }: NoteProps) {
           </div>
           <footer>
             <div className="left-col">
-              <button className="note__button-drag">
+              <button className="note__button-drag" onMouseDown={handleDragMouseDown}>
                 <MdDragIndicator size={24} />
               </button>
               

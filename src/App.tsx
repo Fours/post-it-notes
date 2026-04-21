@@ -26,12 +26,21 @@ function App() {
     setNotes(notes.map(n => (n.id === id ? { ...n, text } : n)))
   }
 
+  function updateNotePosition(id: string, x: number, y: number) {
+    setNotes(notes.map(n => (n.id === id ? { ...n, x, y } : n)))
+  }
+
   return (
     <>
       <Header onAddNote={addNote} />
       <div className="wall" ref={wallRef}>
         {notes.map(note => (
-          <Note key={note.id} note={note} onUpdate={updateNoteText} />
+          <Note
+            key={note.id}
+            note={note}
+            onUpdate={updateNoteText}
+            onUpdatePosition={updateNotePosition}
+          />
         ))}
       </div>
     </>
