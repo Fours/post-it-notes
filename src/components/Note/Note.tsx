@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { MdDragIndicator } from "react-icons/md";
+import { FaRegTrashAlt } from "react-icons/fa";
 import type { Note as NoteType } from '../../types'
 import './Note.css'
 
@@ -92,10 +93,13 @@ export function Note({ note, onUpdate, onUpdatePosition }: NoteProps) {
             <div className="left-col">
               <button className="note__button-drag" onMouseDown={handleDragMouseDown}>
                 <MdDragIndicator size={24} />
-              </button>
-              
+              </button>              
             </div>
-            <div className="right-col"></div>
+            <div className="right-col">
+              <button className="note__button-delete">
+                <FaRegTrashAlt size={20} />
+              </button>
+            </div>
           </footer>
         </>
       )}
