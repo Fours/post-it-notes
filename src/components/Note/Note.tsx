@@ -1,20 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 import { MdDragIndicator } from "react-icons/md";
 import { FaRegTrashAlt } from "react-icons/fa";
-import type { Note as NoteType } from '../../types'
+import type { Note as NoteType, NoteColor } from '../../types'
 import './Note.css'
 
 interface NoteProps {
   note: NoteType
   onUpdate: (id: string, text: string) => void
   onUpdatePosition: (id: string, x: number, y: number) => void
+  onUpdateColor: (id: string, color: NoteColor) => void
   onDelete: (id: string) => void
 }
 
-export function Note({ note, onUpdate, onUpdatePosition, onDelete }: NoteProps) {
+export function Note({ note, onUpdate, onUpdatePosition, onUpdateColor, onDelete }: NoteProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [draft, setDraft] = useState(note.text)
   const [drag, setDrag] = useState<{ x: number; y: number } | null>(null)
+  const [isColorPickerOpen, setIsColorPickerOpen] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -67,9 +69,14 @@ export function Note({ note, onUpdate, onUpdatePosition, onDelete }: NoteProps) 
     window.addEventListener('mouseup', onUp)
   }
 
+  function pickNewColor(newColor: NoteColor) {
+    onUpdateColor(note.id, newColor)
+    setIsColorPickerOpen(false)
+  }
+
   return (
     <div
-      className={`note${isEditing ? ' note--editing' : ''}`}
+      className={`note${isEditing ? ' note--editing' : ''} ${note.color}`}
       style={{ left: drag?.x ?? note.x, top: drag?.y ?? note.y }}
     >
       {isEditing ? (
@@ -95,9 +102,16 @@ export function Note({ note, onUpdate, onUpdatePosition, onDelete }: NoteProps) 
               <button className="note__button-drag" onMouseDown={handleDragMouseDown}>
                 <MdDragIndicator size={24} />
               </button>
-              <button className="color-picker">&nbsp;</button>
-              <button className="color-picker blue">&nbsp;</button>
-              <button className="color-picker yellow">&nbsp;</button>              
+              <button className="color-picker" onClick={() => setIsColorPickerOpen(p => !p)}>&nbsp;</button>
+              {isColorPickerOpen && note.color !== 'yellow' ?
+                <button className="color-picker yellow" onClick={() => pickNewColor('yellow')}>&nbsp;</button>
+              : null}
+              {isColorPickerOpen && note.color !== 'blue' ?
+                <button className="color-picker blue" onClick={() => pickNewColor('blue')}>&nbsp;</button>
+              : null}
+              {isColorPickerOpen && note.color !== 'red' ?
+                <button className="color-picker red" onClick={() => pickNewColor('red')}>&nbsp;</button>
+              : null}
             </div>
             <div className="right-col">
               <button className="note__button-delete" onClick={() => onDelete(note.id)}>

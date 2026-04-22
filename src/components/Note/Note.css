@@ -21,6 +21,10 @@
   background: #add8e6;
 }
 
+.note.red {
+  background: #fcbcbc;
+}
+
 .note::before {
   content: '';
   position: absolute;
@@ -36,6 +40,10 @@
   background: linear-gradient(315deg, #83cae0 0%, #6da4b5 50%, transparent 50%);
 }
 
+.note.red::before {
+  background: linear-gradient(315deg, #ed8d8d 0%, #d28d8d 50%, transparent 50%);
+}
+
 .note__body {
   padding: 32px 20px 12px 32px;
   height: 85%;
@@ -49,6 +57,11 @@
   border-bottom-color: #6da4b5;
 }
 
+.note.red .note__body {
+  border-bottom-color: #d28d8d;
+}
+
+
 .note__text {
   white-space: pre-wrap;
   word-break: break-word;
@@ -59,7 +72,8 @@
 }
 
 .note__placeholder {
-  color: #888;
+  color: #333;
+  opacity: 40%;
   font-style: italic;
   font-size: 14px;
   margin: 0;
@@ -98,10 +112,15 @@
   border: 0;
   background: none;
   color: #b8a800;
+  cursor: pointer;
 }
 
 .note.blue footer button {
   color: #6da4b5;
+}
+
+.note.red footer button {
+  color: #d28d8d;
 }
 
 .note footer button.color-picker {
@@ -116,6 +135,12 @@
   border-color: #6da4b5;
 }
 
+.note.red footer button.color-picker {
+  border-color: #d28d8d;
+}
+
+
+
 .note footer button.color-picker.yellow {
   background: #fef08a;
   border-color: #b8a800;
@@ -126,11 +151,15 @@
   border-color: #6da4b5;
 }
 
-.note__button-drag {
+.note footer button.color-picker.red {
+  background: #fcbcbc;
+  border-color: #d28d8d;
+}
+
+.note footer button.note__button-drag {
   cursor: grab;
 }
 
 .note__button-delete {
   padding: 2px 10px 0 0;
-  cursor: pointer;
 }

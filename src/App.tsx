@@ -3,7 +3,7 @@ import './App.css'
 import { Header } from './components/Header/Header'
 import { Note } from './components/Note/Note'
 import { useLocalStorage } from './hooks/useLocalStorage'
-import type { Note as NoteType } from './types'
+import type { Note as NoteType, NoteColor } from './types'
 
 function App() {
   const [notes, setNotes] = useLocalStorage<NoteType[]>('post-it-notes', [])
@@ -17,6 +17,7 @@ function App() {
       text: '',
       x: Math.max(0, (w - 300) / 2),
       y: Math.max(0, (h - 300) / 2),
+      color: 'yellow',
       createdAt: Date.now(),
     }
     setNotes([...notes, newNote])
@@ -28,6 +29,10 @@ function App() {
 
   function updateNotePosition(id: string, x: number, y: number) {
     setNotes(notes.map(n => (n.id === id ? { ...n, x, y } : n)))
+  }
+
+  function updateNoteColor(id: string, color: NoteColor) {
+    setNotes(notes.map(n => (n.id === id ? { ...n, color } : n)))
   }
 
   function deleteNote(id: string) {
@@ -44,6 +49,7 @@ function App() {
             note={note}
             onUpdate={updateNoteText}
             onUpdatePosition={updateNotePosition}
+            onUpdateColor={updateNoteColor}
             onDelete={deleteNote}
           />
         ))}
