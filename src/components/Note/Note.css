@@ -37,7 +37,7 @@
 }
 
 .note__body {
-  padding: 32px 12px 12px 32px;
+  padding: 32px 20px 12px 32px;
   height: 85%;
   box-sizing: border-box;
   cursor: text;
@@ -73,10 +73,10 @@
   background: transparent;
   resize: none;
   font-family: system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   color: #3a3000;
   outline: none;
-  padding: 32px 12px 12px 32px;
+  padding: 32px 20px 12px 32px;
   box-sizing: border-box;
 }
 
