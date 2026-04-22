@@ -20,4 +20,5 @@ body {
   position: relative;
   flex: 1;
   overflow: hidden;
+  border-top: 1px solid #555;
 }
