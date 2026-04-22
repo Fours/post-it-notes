@@ -94,7 +94,10 @@ export function Note({ note, onUpdate, onUpdatePosition, onDelete }: NoteProps) 
             <div className="left-col">
               <button className="note__button-drag" onMouseDown={handleDragMouseDown}>
                 <MdDragIndicator size={24} />
-              </button>              
+              </button>
+              <button className="color-picker">&nbsp;</button>
+              <button className="color-picker blue">&nbsp;</button>
+              <button className="color-picker yellow">&nbsp;</button>              
             </div>
             <div className="right-col">
               <button className="note__button-delete" onClick={() => onDelete(note.id)}>

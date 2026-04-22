@@ -90,7 +90,8 @@
 }
 
 .note footer .left-col {
-  flex-grow: 1
+  flex-grow: 1;
+  display: flex;
 }
 
 .note footer button {
@@ -101,6 +102,28 @@
 
 .note.blue footer button {
   color: #6da4b5;
+}
+
+.note footer button.color-picker {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #b8a800;
+  margin: 4px 10px 0 0;
+}
+
+.note.blue footer button.color-picker {
+  border-color: #6da4b5;
+}
+
+.note footer button.color-picker.yellow {
+  background: #fef08a;
+  border-color: #b8a800;
+}
+
+.note footer button.color-picker.blue {
+  background: #add8e6;
+  border-color: #6da4b5;
 }
 
 .note__button-drag {
