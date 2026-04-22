@@ -8,9 +8,10 @@ interface NoteProps {
   note: NoteType
   onUpdate: (id: string, text: string) => void
   onUpdatePosition: (id: string, x: number, y: number) => void
+  onDelete: (id: string) => void
 }
 
-export function Note({ note, onUpdate, onUpdatePosition }: NoteProps) {
+export function Note({ note, onUpdate, onUpdatePosition, onDelete }: NoteProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [draft, setDraft] = useState(note.text)
   const [drag, setDrag] = useState<{ x: number; y: number } | null>(null)
@@ -96,7 +97,7 @@ export function Note({ note, onUpdate, onUpdatePosition }: NoteProps) {
               </button>              
             </div>
             <div className="right-col">
-              <button className="note__button-delete">
+              <button className="note__button-delete" onClick={() => onDelete(note.id)}>
                 <FaRegTrashAlt size={20} />
               </button>
             </div>

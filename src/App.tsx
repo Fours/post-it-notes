@@ -30,6 +30,10 @@ function App() {
     setNotes(notes.map(n => (n.id === id ? { ...n, x, y } : n)))
   }
 
+  function deleteNote(id: string) {
+    setNotes(notes.filter(n => n.id !== id))
+  }
+
   return (
     <>
       <Header onAddNote={addNote} />
@@ -40,6 +44,7 @@ function App() {
             note={note}
             onUpdate={updateNoteText}
             onUpdatePosition={updateNotePosition}
+            onDelete={deleteNote}
           />
         ))}
       </div>
